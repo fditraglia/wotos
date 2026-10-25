@@ -17,6 +17,7 @@
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   --card-w: min(56vw, 14rem);
+  --card-h: calc(var(--card-w) * 1.4);
   color-scheme: dark;
 }
 
@@ -127,7 +128,7 @@ main {
   display: flex;
   flex-direction: column;
   width: var(--card-w);
-  aspect-ratio: 5 / 7;
+  height: var(--card-h);
   margin: 0;
   padding: 0.55rem 0.55rem 0;
   border-radius: 0.9rem;
@@ -181,14 +182,14 @@ main {
 .stage {
   display: grid;
   place-items: center;
-  height: calc(var(--card-w) * 1.4 + 1.5rem);
+  height: calc(var(--card-h) + 1.5rem);
   perspective: 1200px;
 }
 
 .deck {
   position: relative;
   width: var(--card-w);
-  aspect-ratio: 5 / 7;
+  height: var(--card-h);
 }
 
 .deck .card {
@@ -254,7 +255,7 @@ main {
 .flipper {
   position: relative;
   width: var(--card-w);
-  aspect-ratio: 5 / 7;
+  height: var(--card-h);
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.3, 0.7, 0.3, 1);
 }
@@ -458,6 +459,7 @@ main {
 
 .card.small {
   width: 5.5rem;
+  height: 7.7rem;
   padding: 0.3rem;
   border-radius: 0.5rem;
 }

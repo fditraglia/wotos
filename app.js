@@ -56,7 +56,7 @@ const backFace = $('back-face');
 const drawBtn = $('draw-btn');
 const drawStatus = $('draw-status');
 
-let drawState = 'ready'; // 'ready' -> 'drawn' -> 'flipped' -> 'drawn' -> ...
+let drawState = 'ready'; // 'ready', then 'drawn' (Obama up, can flip), 'flipped' or 'skipped' (Gaga up)
 let current = null;
 
 function setFace(face, who) {
@@ -99,9 +99,17 @@ async function shuffleAndDraw() {
   deck.hidden = true;
   drawn.hidden = false;
   restart(drawn, 'dealt');
-  drawStatus.textContent = `Facing up: ${NAMES[current.up]}.`;
-  drawBtn.textContent = 'Flip the card';
-  drawState = 'drawn';
+  // Only a student with Obama facing up goes on to look at the other side.
+  if (current.up === 'obama') {
+    drawStatus.textContent = 'Facing up: Obama.';
+    drawBtn.textContent = 'Flip the card';
+    drawState = 'drawn';
+  } else {
+    drawStatus.textContent = 'Facing up: Gaga. This round doesn’t count for you.';
+    drawBtn.textContent = 'Draw again';
+    drawState = 'skipped';
+    recordRound(current);
+  }
   drawBtn.disabled = false;
 }
 

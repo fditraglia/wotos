@@ -6,8 +6,8 @@ There are three cards: Gaga/Gaga, Obama/Gaga and Obama/Obama. Draw one at random
 
 The site has two modes.
 
-- **Draw a card** (`#draw`) replaces the physical cards. Each student draws on their own phone, and the instructor runs the usual procedure: stand if Obama is facing up, then sit down if he is not on the other side. The phone keeps a running tally across rounds, so a small class can pool several rounds each.
-- **Simulate** (`#simulate`) draws 1, 10, 100 or 1,000 cards at a time and shows every draw and the running estimate. The 2/3 reference line and the explanation stay hidden until "Reveal the answer" is opened. Link straight to it with `https://ditraglia.com/wotos/#simulate`.
+- **One at a time** (`#one`) replaces the physical cards. Each student draws on their own phone, and the instructor runs the usual procedure: stand if Obama is facing up, then sit down if he is not on the other side. The phone keeps a running tally across rounds, so a small class can pool several rounds each.
+- **Many at once** (`#many`) draws 1, 10, 100 or 1,000 cards at a time and shows every draw and the running estimate. The 2/3 reference line and the explanation stay hidden until "Reveal the answer" is opened. Link straight to it with `https://ditraglia.com/wotos/#many`.
 
 ## Development
 

@@ -25,17 +25,17 @@ function drawCard() {
 
 // ---------------------------------------------------------------- Modes
 
-const tabs = { draw: $('tab-draw'), simulate: $('tab-simulate') };
-const panels = { draw: $('draw'), simulate: $('simulate') };
+const tabs = { one: $('tab-one'), many: $('tab-many') };
+const panels = { one: $('one'), many: $('many') };
 
 function showMode() {
-  const mode = location.hash === '#simulate' ? 'simulate' : 'draw';
+  const mode = location.hash === '#many' ? 'many' : 'one';
   for (const key of Object.keys(panels)) {
     const active = key === mode;
     panels[key].hidden = !active;
     tabs[key].setAttribute('aria-selected', String(active));
   }
-  if (mode === 'simulate') renderSim();
+  if (mode === 'many') renderSim();
 }
 
 for (const key of Object.keys(tabs)) {
@@ -46,7 +46,7 @@ for (const key of Object.keys(tabs)) {
 }
 window.addEventListener('hashchange', showMode);
 
-// ---------------------------------------------------------------- Draw a card
+// ---------------------------------------------------------------- One at a time
 
 const deck = $('deck');
 const drawn = $('drawn');
@@ -74,6 +74,11 @@ function restart(el, cls) {
 
 async function shuffleAndDraw() {
   drawBtn.disabled = true;
+  // On a phone the setup can leave the card or button partly off screen; bring both into view.
+  const stageTop = panels.one.getBoundingClientRect().top;
+  if (stageTop < 0 || drawBtn.getBoundingClientRect().bottom > window.innerHeight) {
+    panels.one.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+  }
   drawn.hidden = true;
   deck.hidden = false;
   drawStatus.textContent = 'Shuffling…';
@@ -174,7 +179,7 @@ resetBtn.addEventListener('click', () => {
 
 renderTally();
 
-// ---------------------------------------------------------------- Simulate
+// ---------------------------------------------------------------- Many at once
 
 // Outcome codes: 0 = Gaga facing up, 1 = Obama up and Gaga on the other side,
 // 2 = Obama on both sides.
@@ -377,14 +382,14 @@ function renderChart() {
 }
 
 function renderSim() {
-  if (panels.simulate.hidden) return;
+  if (panels.many.hidden) return;
   renderLatest();
   renderEstimate();
   renderWaffle();
   renderChart();
 }
 
-new ResizeObserver(() => renderSim()).observe(panels.simulate);
+new ResizeObserver(() => renderSim()).observe(panels.many);
 
 showMode();
 

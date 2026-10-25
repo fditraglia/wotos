@@ -14,15 +14,30 @@
 <body>
 <header class="masthead">
   <h1>Who’s on the other side?</h1>
-  <p class="premise">Three cards: Gaga/Gaga, Obama/Gaga and Obama/Obama. Draw one at random and look at the side facing up. If it’s Obama, what is the probability that the other side is Obama too?</p>
+  <p class="setup-lead">Three cards, each with a face on the front and back:</p>
+  <ul class="setup">
+    <li>
+      <div class="opened"><img src="img/gaga.jpg" alt="Gaga"><img src="img/gaga.jpg" alt="Gaga"></div>
+      <span>Gaga on both sides</span>
+    </li>
+    <li>
+      <div class="opened"><img src="img/obama.jpg" alt="Obama"><img src="img/gaga.jpg" alt="Gaga"></div>
+      <span>Obama on one side, Gaga on the other</span>
+    </li>
+    <li>
+      <div class="opened"><img src="img/obama.jpg" alt="Obama"><img src="img/obama.jpg" alt="Obama"></div>
+      <span>Obama on both sides</span>
+    </li>
+  </ul>
+  <p class="premise">Shuffle them, draw one, and look only at the side facing up. It’s Obama. What is the probability that Obama is on the other side too?</p>
   <nav class="modes" role="tablist" aria-label="Mode">
-    <button type="button" role="tab" id="tab-draw" aria-controls="draw" aria-selected="true">Draw a card</button>
-    <button type="button" role="tab" id="tab-simulate" aria-controls="simulate" aria-selected="false">Simulate</button>
+    <button type="button" role="tab" id="tab-one" aria-controls="one" aria-selected="true">One at a time</button>
+    <button type="button" role="tab" id="tab-many" aria-controls="many" aria-selected="false">Many at once</button>
   </nav>
 </header>
 
 <main>
-  <section id="draw" class="draw" role="tabpanel" aria-labelledby="tab-draw">
+  <section id="one" class="draw" role="tabpanel" aria-labelledby="tab-one">
     <div class="stage">
       <div class="deck" id="deck" aria-hidden="true">
         <div class="card blank"><span>?</span></div>
@@ -56,7 +71,7 @@
     </div>
   </section>
 
-  <section id="simulate" class="simulate" role="tabpanel" aria-labelledby="tab-simulate" hidden>
+  <section id="many" class="simulate" role="tabpanel" aria-labelledby="tab-many" hidden>
     <div class="sim-left">
       <div class="controls">
         <span class="controls-label" id="chips-label">Draw</span>
